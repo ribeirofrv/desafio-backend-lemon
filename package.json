@@ -1,0 +1,38 @@
+{
+  "name": "desafio-backend-lemon",
+  "version": "1.0.0",
+  "description": "Desafio Técnico Backend Lemon Energia",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node .",
+    "test": "mocha -r esm src/tests/**/*$NAME*.test.js --exit",
+    "test:coverage": "nyc --all npm run test",
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ribeirofrv/desafio-backend-lemon.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "Francisca Vanessa da Silva Ribeiro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ribeirofrv/desafio-backend-lemon/issues"
+  },
+  "homepage": "https://github.com/ribeirofrv/desafio-backend-lemon#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "json-schema-faker": "^0.5.0-rcv.46"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "eslint-config-trybe-backend": "^2.1.0",
+    "mocha": "^10.2.0",
+    "sinon": "^15.0.1"
+  }
+}
