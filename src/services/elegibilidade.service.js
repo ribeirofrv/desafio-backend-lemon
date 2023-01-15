@@ -1,3 +1,4 @@
+const { SUCCESS, UNAUTHORIZED } = require('../utils/statusHttp');
 const {
   checaClasseDeConsumo,
   checaModalidadeTarifaria,
@@ -31,13 +32,21 @@ const getElegibilidade = async (empresa) => {
   if (consumoPorConexaoElegivel !== true) razoesInelegibilidade.push(consumoPorConexaoElegivel);
 
   const elegivel = razoesInelegibilidade.length === 0;
-  if (!elegivel) return { elegivel, razoesInelegibilidade };
+  if (!elegivel) {
+    return {
+      status: UNAUTHORIZED,
+      json: { elegivel, razoesInelegibilidade },
+    };
+  }
 
   const economiaAnualDeCO2 = calculaEnconomiaAnualDeCO2(consumoMinimo);
 
   return {
-    elegivel,
-    economiaAnualDeCO2,
+    status: SUCCESS,
+    json: {
+      elegivel,
+      economiaAnualDeCO2,
+    },
   };
 };
 
