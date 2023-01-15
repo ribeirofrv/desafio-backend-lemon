@@ -1,5 +1,6 @@
 const cors = require('cors');
 const express = require('express');
+const errorMiddleware = require('./middleware/errorMiddleware');
 
 const routes = require('./routes/index');
 
@@ -9,6 +10,6 @@ app.use(cors());
 
 app.use('/elegibilidade', routes.elegibilidade);
 
-// app.use(errorMiddleware);
+app.use(errorMiddleware);
 
 module.exports = app;
