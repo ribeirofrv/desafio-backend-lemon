@@ -1,12 +1,14 @@
 const mocha = require('mocha');
-// const sinon = require('sinon');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
 const app = require('../../src/app');
-const clienteElegivel = require('../mock/clienteElegivel');
-const clienteNaoElegivel = require('../mock/clienteNaoElegivel');
-// const elegibilidadeService = require('../src/services/elegibilidade.service');
+
+const clienteElegivelEntrada = require('../mock/entradas/clienteElegivelEntradas');
+// const clienteNaoElegivelEntrada = require('../mock/entradas/clienteNaoElegivelEntrada');
+
+const clienteElegivelSaida = require('../mock/saidas/clienteElegivelSaidas');
+// const clienteNaoElegivelSaida = require('../mock/saidas/clienteNaoElegivelSaidas');
 
 chai.use(chaiHttp);
 
@@ -15,11 +17,25 @@ const { expect, request } = chai;
 
 describe('Fluxo de Elegibilidade', () => {
   describe('Cenário 1: Empresa elegível', () => {
-    it('Quando recebe os dados corretos retorna o resultado esperado', async () => {
-      const response = await request(app).get('/elegibilidade').send(clienteElegivel.entrada);
+    it('Quando recebe a classe de consumo do tipo `comercial` e modalidade tarifaria `convencional`', async () => {
+      const response = await request(app).get('/elegibilidade').send(clienteElegivelEntrada[0]);
 
       expect(response.status).to.equal(200);
-      expect(response.body).to.deep.equal(clienteElegivel.saida);
+      expect(response.body).to.deep.equals(clienteElegivelSaida[0]);
+    });
+
+    it('Quando recebe a classe de consumo do tipo `industrial` e modalidade tarifaria `branca`', async () => {
+      const response = await request(app).get('/elegibilidade').send(clienteElegivelEntrada[1]);
+
+      expect(response.status).to.equal(200);
+      expect(response.body).to.deep.equals(clienteElegivelSaida[1]);
+    });
+
+    it('Quando recebe a classe de consumo do tipo `residencial`', async () => {
+      const response = await request(app).get('/elegibilidade').send(clienteElegivelEntrada[2]);
+
+      expect(response.status).to.equal(200);
+      expect(response.body).to.deep.equals(clienteElegivelSaida[2]);
     });
   });
 
