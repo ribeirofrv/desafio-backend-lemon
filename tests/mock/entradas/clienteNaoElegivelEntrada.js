@@ -24,4 +24,11 @@ module.exports = [
     modalidadeTarifaria: 'azul',
     historicoDeConsumo: [778, 690, 738],
   },
+  {
+    numeroDoDocumento: '14041737706456',
+    tipoDeConexao: 'trifasico',
+    classeDeConsumo: 'poderPublico',
+    modalidadeTarifaria: 'verde',
+    historicoDeConsumo: [778, 690, 738],
+  },
 ];

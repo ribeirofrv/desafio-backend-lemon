@@ -22,4 +22,12 @@ module.exports = [
       'Consumo muito baixo para tipo de conexão',
     ],
   },
+  {
+    elegivel: false,
+    razoesInelegibilidade: [
+      'Classe de consumo não aceita',
+      'Modalidade tarifária não aceita',
+      'Consumo muito baixo para tipo de conexão',
+    ],
+  },
 ];
