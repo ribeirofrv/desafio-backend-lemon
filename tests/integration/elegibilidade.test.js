@@ -5,10 +5,11 @@ const chaiHttp = require('chai-http');
 const app = require('../../src/app');
 
 const clienteElegivelEntrada = require('../mock/entradas/clienteElegivelEntradas');
-// const clienteNaoElegivelEntrada = require('../mock/entradas/clienteNaoElegivelEntrada');
+const clienteNaoElegivelEntrada = require('../mock/entradas/clienteNaoElegivelEntrada');
 
 const clienteElegivelSaida = require('../mock/saidas/clienteElegivelSaidas');
-// const clienteNaoElegivelSaida = require('../mock/saidas/clienteNaoElegivelSaidas');
+const clienteNaoElegivelSaida = require('../mock/saidas/clienteNaoElegivelSaidas');
+const { UNAUTHORIZED } = require('../../src/utils/statusHttp');
 
 chai.use(chaiHttp);
 
@@ -40,11 +41,28 @@ describe('Fluxo de Elegibilidade', () => {
   });
 
   describe('Cenário 2: Empresa não elegível', () => {
-    it('Quando recebe os dados corretos retorna o resultado esperado', async () => {
-      const response = await request(app).get('/elegibilidade').send(clienteNaoElegivel.entrada);
+    it('Quando recebe a classe de consumo do tipo `rural` e modalidade tarifaria `verde`', async () => {
+      const response = await request(app).get('/elegibilidade').send(clienteNaoElegivelEntrada[0]);
+      expect(response.status).to.equal(UNAUTHORIZED);
+      expect(response.body).to.deep.equals(clienteNaoElegivelSaida[0]);
+    });
 
-      expect(response.status).to.equal(200);
-      expect(response.body).to.deep.equal(clienteNaoElegivel.saida);
+    it('Quando recebe a classe de consumo do tipo `poderPublico`', async () => {
+      const response = await request(app).get('/elegibilidade').send(clienteNaoElegivelEntrada[1]);
+      expect(response.status).to.equal(UNAUTHORIZED);
+      expect(response.body).to.deep.equals(clienteNaoElegivelSaida[1]);
+    });
+
+    it('Quando recebe a modalidade tarifaria do tipo `azul`', async () => {
+      const response = await request(app).get('/elegibilidade').send(clienteNaoElegivelEntrada[2]);
+      expect(response.status).to.equal(UNAUTHORIZED);
+      expect(response.body).to.deep.equals(clienteNaoElegivelSaida[2]);
+    });
+
+    it('Quando consumo é muito baixo para o tipo de conexão', async () => {
+      const response = await request(app).get('/elegibilidade').send(clienteNaoElegivelEntrada[3]);
+      expect(response.status).to.equal(UNAUTHORIZED);
+      expect(response.body).to.deep.equals(clienteNaoElegivelSaida[3]);
     });
   });
 });
