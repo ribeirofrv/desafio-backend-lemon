@@ -4,7 +4,7 @@ const getElegibilidade = async (request, response, next) => {
   try {
     const result = await elegibilidadeService.getElegibilidade(request.body);
 
-    response.status(200).json(result);
+    response.status(result.status).json(result.json);
   } catch (error) {
     next(error);
   }
