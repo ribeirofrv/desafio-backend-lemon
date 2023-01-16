@@ -8,7 +8,7 @@ const {
 } = require('./helper/criteriosElegibilidade');
 const checaInput = require('./validation/empresa.validation');
 
-const getElegibilidade = async (empresa) => {
+const checaElegibilidade = async (empresa) => {
   const {
     tipoDeConexao,
     classeDeConsumo,
@@ -50,4 +50,4 @@ const getElegibilidade = async (empresa) => {
   };
 };
 
-module.exports = { getElegibilidade };
+module.exports = { checaElegibilidade };

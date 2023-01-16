@@ -4,6 +4,6 @@ const eligibilityController = require('../controllers/elegibilidade.controller')
 
 const router = Router();
 
-router.get('/', eligibilityController.getElegibilidade);
+router.post('/', eligibilityController.checaElegibilidade);
 
 module.exports = router;

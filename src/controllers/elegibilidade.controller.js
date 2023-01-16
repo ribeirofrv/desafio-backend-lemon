@@ -1,8 +1,8 @@
 const elegibilidadeService = require('../services/elegibilidade.service');
 
-const getElegibilidade = async (request, response, next) => {
+const checaElegibilidade = async (request, response, next) => {
   try {
-    const result = await elegibilidadeService.getElegibilidade(request.body);
+    const result = await elegibilidadeService.checaElegibilidade(request.body);
 
     response.status(result.status).json(result.json);
   } catch (error) {
@@ -11,5 +11,5 @@ const getElegibilidade = async (request, response, next) => {
 };
 
 module.exports = {
-  getElegibilidade,
+  checaElegibilidade,
 };
