@@ -8,27 +8,31 @@
 
 # API para avaliação de elegibilidade de cliente :lemon:
 
-API Rest desenvolvida para o desafio técnico da Lemon Energy <br/>
+>API Rest desenvolvida para o desafio técnico da Lemon Energy <br/>
 O desafio propôs uma aplicação Node para checar a elegibilidade de empresas para fazer parte da Lemon como cliente através dos dados contidos na conta de luz.
 Caso a empresa não seja elegível, precisamos explicitar os motivos para tal. Caso ela seja elegível, precisamos calcular também a projeção da quantidade de CO₂ que ela deixaria de emitir caso usasse energia limpa.
 
 ## :pushpin: Índice
  - [Ferramentas](#ferramentas)
+ - [Desenvolvimento](#desenvolvimento)
  - [Referência da API](#referência-da-api)
  - [Rodando Localmente](#rodando-localmente)
  - [Rodando Testes Localmente](#rodando-testes)
 
 ## :hammer_and_wrench: Ferramentas
 
-:gear: **Server:** Node, Express
+ - :gear: **Server:** Node, Express
 
-:test_tube: **Test:** Mocha, Chai
+ - :test_tube: **Test:** Mocha, Chai
+
+## Desenvolvimento
+Aplicação foi desenvolvida com [Node.js](https://nodejs.org/en/) com o framework [Express](https://expressjs.com/) pensando nos princípios REST baseado na arquitetura MSC (model-service-controller) para validação de dados foi utilizado a biblioteca [Joi](https://joi.dev/) e para garantir qualidade foram desenvolvidos testes utilizando [Mocha](https://mochajs.org/) e [Chai](https://www.chaijs.com/).
 
 ## Referência da API
 
 #### Checa elegibilidade
 
-```http
+```bash
   POST /elegibilidade
 ```
 
@@ -40,8 +44,7 @@ Caso a empresa não seja elegível, precisamos explicitar os motivos para tal. C
 | `modalidadeTarifaria` | `string` | **Required**. Modalidade Tarifaria sendo elas: `branca`, `azul`, `verde` ou `convencional`.                      |
 | `historicoDeConsumo`  | `array`  | **Required**. Histórico de consumo do último ano. Deve conter no minímo os últimos 3 meses de consumo.           |
 
-
-#### Exemplo de Entrada
+### Exemplo de Entrada
 ```json
 {
   "numeroDoDocumento": "11284470000140",
@@ -64,6 +67,7 @@ Caso a empresa não seja elegível, precisamos explicitar os motivos para tal. C
   ]
 }
 ```
+### Exemplos de saída
 #### Caso elegível :thumbsup:
 ```json
 {
@@ -85,7 +89,7 @@ Caso a empresa não seja elegível, precisamos explicitar os motivos para tal. C
 
 ## Rodando Localmente
 
-:warning: Necessário ter node e npm instalados na sua máquina!
+> :warning: Necessário ter node 16 e npm instalados na sua máquina!
 
 Clone este repositório e entre na pasta do projeto
 
@@ -103,18 +107,23 @@ Instale as dependências
 Inicie o servidor
 
 ```bash
-  npm run start
+  npm start
 ```
-:eight_spoked_asterisk: Por padrão o servidor usa a porta 3001 e pode ser alterada criando o arquivo .env
+> :eight_spoked_asterisk: Por padrão o servidor usa a porta 3001 e pode ser alterada criando o arquivo .env
 
 
 ## Rodando Testes
 
-Para rodar os tests, certifique-se de estar dentro na pasta do projeto e cole o seguinte comando no terminal
+Para rodar os tests, certifique-se de estar dentro na pasta do projeto e com o servidor iniciado e então cole o seguinte comando em outra aba do terminal
 
 ```bash
-  npm run test
+  npm test
 ```
+## Futuras Melhorias
+ - Deploy no Railway
+ - Densenvolver o front-end com um formulário para captação de clientes
+ - Fazer integração com um Banco de Dados para salvar clientes elegiveis
 
 ## Autora
- - @ribeirofrv
+ - [@ribeirofrv](https://github.com/ribeirofrv)
+   - :mailbox: ribeirofrv@gmail.com
