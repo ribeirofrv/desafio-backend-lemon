@@ -1,0 +1,42 @@
+{
+  "name": "desafio-backend-lemon",
+  "version": "1.0.0",
+  "description": "Desafio Técnico Backend Lemon Energia",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon --watch \"./src/**\" ./src/server.js",
+    "test": "mocha tests/**/*$NAME*.test.js --exit",
+    "test:coverage": "nyc --all npm run test",
+    "lint": "eslint ./src --ext .js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ribeirofrv/desafio-backend-lemon.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "Francisca Vanessa da Silva Ribeiro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ribeirofrv/desafio-backend-lemon/issues"
+  },
+  "homepage": "https://github.com/ribeirofrv/desafio-backend-lemon#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "joi": "^17.7.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-mocha": "^10.1.0",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.20",
+    "nyc": "^15.1.0",
+    "sinon": "^15.0.1"
+  }
+}
